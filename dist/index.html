@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b1013"><meta name="description" content="World of Savior — SysOne Studio. Besh najotkor, besh olam va bir taqdir.">
+  <title>World of Savior · SysOne Studio</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="style-v2.css?v=0.2">
+</head>
+<body>
+<div id="app" data-screen="menu">
+  <canvas id="scene" aria-label="World of Savior jang maydoni"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="topbar">
+    <button class="brand" id="homeButton" aria-label="Bosh menyu"><span class="brand-emblem">W<span>S</span></span><span>SYSONE <b>STUDIO</b></span></button>
+    <div class="top-center"><i></i> WORLD OF SAVIOR <i></i></div>
+    <nav><button id="helpButton" class="icon-button" title="Boshqaruv">?<span>Boshqaruv</span></button><button id="settingsButton" class="icon-button" title="Sozlamalar">⚙<span>Sozlamalar</span></button><button id="fullscreenButton" class="icon-button" title="To‘liq ekran">⛶</button><button id="muteButton" class="icon-button" title="Ovozni yoqish yoki o‘chirish">♫</button></nav>
+  </header>
+  <main id="menuScreen" class="screen menu-screen">
+    <div class="menu-content"><p class="eyebrow"><span></span> BESH OLAM. BIR TAQDIR.</p><h1><span>WORLD OF</span>SAVIOR</h1><p class="subtitle">NAJOTKORLAR OLAMI</p><div class="title-rule"><i></i><span>◆</span><i></i></div>
+      <div class="menu-options">
+        <button class="menu-option primary" data-mode="versus"><span class="option-number">01</span><span><b>JANGNI BOSHLASH</b><small>Kompyuterga qarshi · 1P vs AI</small></span><span class="option-arrow">↗</span></button>
+        <button class="menu-option" data-mode="local"><span class="option-number">02</span><span><b>IKKI O‘YINCHI</b><small>Bitta klaviatura · Mahalliy duel</small></span><span class="option-arrow">↗</span></button>
+        <button class="menu-option" data-mode="arcade"><span class="option-number">03</span><span><b>NAJOTKORLAR MINORASI</b><small>To‘rt raqib · Chempionlik sari</small></span><span class="option-arrow">↗</span></button>
+        <button class="menu-option" data-mode="training"><span class="option-number">04</span><span><b>MASHQ MAYDONI</b><small>Cheksiz energiya · Kombolarni o‘rganing</small></span><span class="option-arrow">↗</span></button>
+      </div>
+    </div>
+    <div class="hero-caption"><span class="micro">01 / 05 — NAJOTKOR</span><h2>SAVIOR</h2><p>BO‘RON NAJOTKORI <span>◆</span> CHAQMOQ</p></div>
+    <footer class="menu-footer"><span><i class="status-dot"></i> O‘YNASHGA TAYYOR <b>v0.1</b></span><button id="creditsButton">SYSONE STUDIO TOMONIDAN YARATILGAN ↗</button><span class="footer-end">BIRINCHI BOB <i> / </i> UYG‘ONISH</span></footer>
+  </main>
+  <main id="selectScreen" class="screen select-screen" hidden>
+    <div class="section-heading"><div><p class="eyebrow">O‘Z TAQDIRINGIZNI TANLANG</p><h2>NAJOTKORLAR</h2></div><span id="modeLabel" class="mode-tag"></span></div>
+    <div class="selection-duel"><div id="p1Info" class="fighter-info"><span class="player-label">01 — SIZNING JANGCHINGIZ</span><h3></h3><p></p><small></small></div><div class="versus-mark">VS<span>OLAMLAR TO‘QNASHUVI</span></div><div id="p2Info" class="fighter-info right"><span class="player-label">02 — RAQIB</span><h3></h3><p></p><small></small></div></div>
+    <div class="roster-heading"><span id="selectInstruction">1-O‘YINCHI UCHUN PERSONAJ TANLANG</span><button id="switchSide">RAQIBNI TANLASH ⇄</button></div>
+    <div id="roster" class="roster"></div>
+    <div class="arena-heading"><span>JANG MAYDONI</span><span id="stageName"></span></div><div id="stageCards" class="stage-cards"></div>
+    <div class="select-actions"><button id="backMenu" class="text-button">← ORQAGA</button><span id="selectionHint">Ikki raundda g‘alaba qozoning. Olamni egallang.</span><button id="beginFight" class="gold-button">JANGGA KIRISH <span>→</span></button></div>
+  </main>
+  <main id="gameScreen" class="screen game-screen" hidden>
+    <div class="fight-hud"><div class="fighter-hud"><div class="hud-name"><b id="p1Name"></b><span id="p1Role">PLAYER 1</span></div><div class="health-shell"><div class="health-trail" id="hpTrail0"></div><div class="health-fill" id="hp0"></div></div><div class="round-dots" id="wins0"><i></i><i></i></div></div><div class="timer-panel"><small id="roundLabel">ROUND 1</small><b id="timer">99</b><button id="pauseButton" title="Jangni to‘xtatish">Ⅱ</button></div><div class="fighter-hud right"><div class="hud-name"><b id="p2Name"></b><span id="p2Role">CPU</span></div><div class="health-shell"><div class="health-trail" id="hpTrail1"></div><div class="health-fill" id="hp1"></div></div><div class="round-dots" id="wins1"><i></i><i></i></div></div></div>
+    <div id="announcer" class="announcer" aria-live="polite"><small></small><h2></h2><p></p></div>
+    <div id="combo0" class="combo"><b></b><span>HIT KOMBO</span></div><div id="combo1" class="combo right"><b></b><span>HIT KOMBO</span></div>
+    <div id="trainingStats" class="training-stats" hidden><span>MASHQ REJIMI</span><span id="trainingDamage">Zarar: 0</span><button id="trainingGuard">Raqib himoyasi: O‘CHIQ</button><button id="resetTraining">R — Qayta boshlash</button></div>
+    <div class="bottom-hud"><div class="energy-side"><div class="energy-caption"><span>MAXSUS KUCH</span><b id="meterValue0">35%</b></div><div class="energy-shell"><i id="meter0"></i></div><span id="meterHint0" class="meter-hint">U · X-RAY UCHUN 100%</span></div><div class="fight-controls-hint"><span>J <b>ZARBA</b></span><span>K <b>OG‘IR</b></span><span>L <b>MAXSUS</b></span><span>SPACE <b>HIMOYA</b></span></div><div class="energy-side right"><div class="energy-caption"><span>MAXSUS KUCH</span><b id="meterValue1">35%</b></div><div class="energy-shell"><i id="meter1"></i></div><span id="meterHint1" class="meter-hint">X-RAY UCHUN 100%</span></div></div>
+    <div id="touchControls" class="touch-controls"><div class="touch-directions"><button data-hold="jump" aria-label="Sakrash">▲</button><button data-hold="left" aria-label="Chapga">◀</button><button data-hold="crouch" aria-label="Egilish">▼</button><button data-hold="right" aria-label="O‘ngga">▶</button></div><div class="touch-attacks"><button data-action="light">J<span>ZARBA</span></button><button data-action="heavy">K<span>OG‘IR</span></button><button data-action="special">L<span>MAXSUS</span></button><button data-hold="guard">▣<span>HIMOYA</span></button><button data-action="grab">I<span>USHLASH</span></button><button data-action="xray">U<span>X-RAY</span></button></div></div>
+    <div id="matchResult" class="match-result" hidden><p class="eyebrow" id="resultEyebrow">JANG YAKUNLANDI</p><h2 id="resultTitle"></h2><p id="resultSubtitle"></p><div class="result-actions"><button id="rematchButton" class="gold-button">YANA BIR JANG ↗</button><button id="rosterButton" class="outline-button">PERSONAJ TANLASH</button><button id="resultMenu" class="text-button">BOSH MENYU</button></div></div>
+  </main>
+  <div id="toast" class="toast" role="status"></div>
+  <div id="launch" class="launch-overlay"><div class="launch-glow"></div><p class="eyebrow">SYSONE STUDIO TAQDIM ETADI</p><h2><span>WORLD OF</span>SAVIOR</h2><p class="launch-subtitle">Besh olam. Besh najotkor. Sizning taqdiringiz.</p><div class="load-status"><span id="loadMessage">Olamlar uyg‘onmoqda…</span><span id="loadPercent">0%</span><i><b id="loadBar"></b></i></div><button id="launchButton" class="gold-button" disabled>YUKLANMOQDA…</button><p class="launch-note">Eng yaxshi tajriba uchun ovozni yoqing.</p><button id="retryLoad" class="text-button" hidden>QAYTA YUKLASH</button></div>
+  <div id="studioIntro" class="studio-intro" hidden><video id="introVideo" playsinline preload="metadata" aria-label="SysOne Studio introsi"></video><button id="skipIntro" class="outline-button">INTRODAN O‘TISH →</button></div>
+  <div id="modal" class="modal" hidden><section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button id="closeModal" class="modal-close" aria-label="Yopish">×</button><p class="eyebrow">WORLD OF SAVIOR</p><h2 id="modalTitle"></h2><div id="modalBody"></div></section></div>
+</div>
+<script type="module" src="game.js?v=0.2"></script>
+</body>
+</html>
